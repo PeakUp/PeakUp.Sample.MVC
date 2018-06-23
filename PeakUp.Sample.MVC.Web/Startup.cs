@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PeakUp.Sample.MVC.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace PeakUp.Sample.MVC.Web
 {
@@ -22,6 +24,7 @@ namespace PeakUp.Sample.MVC.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<PeakUpSampleDB>(optionsBuilder => optionsBuilder.UseSqlServer(Configuration.GetConnectionString(nameof(PeakUpSampleDB))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
